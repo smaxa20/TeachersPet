@@ -9,7 +9,7 @@ export const CardButton = styled.button`
     padding: 4px 8px 8px;
     margin: 12px 0px;
     background-color: ${props => props.isActive ? Colors.green3 : 'white'};
-    color: ${props => props.isActive ? 'white' : Colors.green4};
+    color: ${props => props.isActive ? Colors.white1 : Colors.green4};
     border: 1px solid ${props => props.isActive ? Colors.green3 : Colors.green4};
     border-radius: 5px;
     cursor: ${props => props.isActive || 'pointer'};
@@ -19,12 +19,12 @@ export const CardButton = styled.button`
     }
     &:hover {
         background-color: ${props => props.isActive || Colors.green3};
-        color: ${props => props.isActive || 'white'};
+        color: ${props => props.isActive || Colors.white1};
         border: 1px solid ${props => props.isActive || Colors.green3};
     }
     &:active {
         background-color: ${props => props.isActive || Colors.green4};
-        color: ${props => props.isActive || 'white'};
+        color: ${props => props.isActive || Colors.white2};
         border: 1px solid ${props => props.isActive || Colors.green4};
     }
 `;
