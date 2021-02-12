@@ -70,66 +70,74 @@ export const Home:React.FC<{}> = () => {
 
     return (
         <Styled.Background>
-            <Styled.ScrollableContainer>
-                {dummyClasses.map(course => (
-                    <ListCard
-                        title={course.name}
-                        subtitle={course.students.length + ' students'}
-                        isActive={activeClass.id === course.id}
-                        onClick={() => {
-                            setActiveClass(course);
-                            setDisplayState(DisplayState.Student);
-                        }}
-                    />
-                ))}
-            </Styled.ScrollableContainer>
-            <Styled.ActionsContainer>
-                <Styled.ActionsRow>
-                    <ActionButton
-                        label={'Random Student'}
-                        onClick={() => {
-                            setActiveStudentIndex(randomStudent());
-                            setDisplayState(DisplayState.Student);
-                        }} />
-                    <ActionButton 
-                        label={'Pairs'}
-                        onClick={() => {
-                            setActiveStudentIndex(undefined);
-                            setGroups(randomPairs());
-                            setDisplayState(DisplayState.Pairs);
-                        }}
-                    />
-                </Styled.ActionsRow>
-                <Styled.ActionsRow>
-                    <ActionButton
-                        label={'Groups'}
-                        onClick={() => {
-                            setActiveStudentIndex(undefined);
-                            setGroups(randomGroups());
-                            setDisplayState(DisplayState.Groups);
-                        }} />
-                    <ActionButton
-                        label={'Rows'}
-                        onClick={() => {
-                            setActiveStudentIndex(undefined);
-                            setGroups(randomRows());
-                            setDisplayState(DisplayState.Rows);
-                        }} />
-                </Styled.ActionsRow>
-            </Styled.ActionsContainer>
-            <div>
-                <button onClick={() => setActiveStudentIndex(undefined)}>{'Reset'}</button>
-                <Styled.ScrollableContainer>
-                    {activeClass.students.map((student, index) => (
-                        <ListCard
-                            title={student.name}
-                            subtitle={getStudentSubtitle(student)}
-                            isActive={activeStudentIndex === index}
-                            onClick={() => console.log(index)}
+            <Styled.Header />
+            <Styled.Title>{activeClass.name}</Styled.Title>
+            <Styled.Content>
+                <Styled.Sidebar>
+                    <Styled.Subtitle>{'My Classes'}</Styled.Subtitle>
+                    <Styled.ScrollableContainer>
+                        {dummyClasses.map(course => (
+                            <ListCard
+                                title={course.name}
+                                subtitle={course.students.length + ' students'}
+                                isActive={activeClass.id === course.id}
+                                onClick={() => {
+                                    setActiveClass(course);
+                                    setDisplayState(DisplayState.Student);
+                                }}
+                            />
+                        ))}
+                    </Styled.ScrollableContainer>
+                </Styled.Sidebar>
+                <Styled.ActionsContainer>
+                    <Styled.ActionsRow>
+                        <ActionButton
+                            label={'Random Student'}
+                            onClick={() => {
+                                setActiveStudentIndex(randomStudent());
+                                setDisplayState(DisplayState.Student);
+                            }} />
+                        <ActionButton 
+                            label={'Pairs'}
+                            onClick={() => {
+                                setActiveStudentIndex(undefined);
+                                setGroups(randomPairs());
+                                setDisplayState(DisplayState.Pairs);
+                            }}
                         />
-                    ))}
-                </Styled.ScrollableContainer>
-            </div>
+                    </Styled.ActionsRow>
+                    <Styled.ActionsRow>
+                        <ActionButton
+                            label={`Groups of ${sizeOfGroup}`}
+                            onClick={() => {
+                                setActiveStudentIndex(undefined);
+                                setGroups(randomGroups());
+                                setDisplayState(DisplayState.Groups);
+                            }} />
+                        <ActionButton
+                            label={`${rowCount} Rows`}
+                            onClick={() => {
+                                setActiveStudentIndex(undefined);
+                                setGroups(randomRows());
+                                setDisplayState(DisplayState.Rows);
+                            }} />
+                    </Styled.ActionsRow>
+                </Styled.ActionsContainer>
+                <Styled.Sidebar>
+                    <Styled.Subtitle>{'Student Profiles'}</Styled.Subtitle>
+                    <button onClick={() => setActiveStudentIndex(undefined)}>{'Reset'}</button>
+                    <Styled.ScrollableContainer>
+                        {activeClass.students.map((student, index) => (
+                            <ListCard
+                                title={student.name}
+                                subtitle={getStudentSubtitle(student)}
+                                isActive={activeStudentIndex === index}
+                                onClick={() => console.log(index)}
+                            />
+                        ))}
+                    </Styled.ScrollableContainer>
+                </Styled.Sidebar>
+            </Styled.Content>
         </Styled.Background>
     );
 }
